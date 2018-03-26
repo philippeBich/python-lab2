@@ -1,4 +1,11 @@
+from sys import argv
+filename = argv[1]
+file = open(filename, "r")
+
 tasks = []
+
+tasks.extend(file.read().split("\n"))
+file.close()
 
 while True:
     print("\nInsert the number corresponding to the action you want to perform:")
@@ -35,8 +42,26 @@ while True:
     elif choice == 3:
         print(sorted(tasks, key=lambda v: v.upper()))
 
+
     elif choice == 4:
+
         print("Program closed.")
+
+        file = open(filename, "w")
+
+        i = 1
+
+        for str in tasks:
+
+            file.write(str)
+
+            if (i < len(tasks)):
+                file.write("\n")
+
+                i = i + 1
+
+        file.close()
+
         exit(0)
 
     else:
